@@ -22,7 +22,7 @@
     
     <style>
        /* ============================================================================
-           LUXURY WEDDING EXPERIENCE — CENTRAL STYLESHEET V7.2 (SCROLL TIMING FIX)
+           LUXURY WEDDING EXPERIENCE — CENTRAL STYLESHEET V9.2 (FINAL PRODUCTION)
           ============================================================================ */
        :root {
            --bg-marfil: #F4F0EA;       
@@ -93,7 +93,7 @@
        /* CH2: LA ESENCIA */
        #chapter-2 { position: relative; width: 100%; min-height: 100vh; min-height: 100dvh; display: flex; align-items: center; justify-content: center; overflow: hidden; background-color: var(--bg-marfil); padding: clamp(4rem, 10vh, 6rem) 1.5rem; z-index: 2; }
        .majestic-photo-layer { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
-       .majestic-ethereal-photo { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) sepia(20%) contrast(110%) brightness(115%); opacity: 0.65; transform: scale(1.1); display: block; }
+       .majestic-ethereal-photo { width: 100%; height: 100%; object-fit: cover; filter: grayscale(60%) sepia(15%) contrast(110%) brightness(115%); opacity: 0.65; transform: scale(1.1); display: block; }
        .solid-canvas-overlay { position: absolute; inset: 0; width: 100%; height: 100%; background-color: var(--bg-marfil); z-index: 1; }
        .content-layer-essence-fog { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; max-width: 800px; text-align: center; }
        .chapter-tag-essence { font-size: clamp(0.55rem, 2vw, 0.65rem); letter-spacing: 0.45em; color: var(--bronce-mate); margin-bottom: clamp(2rem, 5vh, 3rem); text-transform: uppercase; }
@@ -110,29 +110,16 @@
        .family-name { font-family: 'Montserrat', sans-serif; font-weight: 300; font-size: clamp(0.95rem, 3vw, 1.1rem); color: var(--carbon-suave); line-height: 1.4; }
 
        /* ============================================================================
-          CAPÍTULO III: NUESTRO CAMINO
+          CAPÍTULO III: NUESTRO CAMINO (COORDENADAS / UBICACIÓN DIRECTA)
           ============================================================================ */
-       .journey-section { position: relative; width: 100%; background-color: var(--bg-marfil-alt); z-index: 2; overflow: hidden; display: flex; flex-direction: column; }
-       .journey-header { width: 100%; padding: clamp(5rem, 10vh, 7rem) 1.5rem 2rem 1.5rem; display: flex; flex-direction: column; align-items: center; text-align: center; z-index: 10; position: relative; background-color: transparent; }
-       .journey-header .chapter-tag { margin-bottom: 1rem; color: var(--bronce-mate); opacity: 1; transform: none; }
-       
-       .horizontal-gallery-wrapper { width: 100%; height: 100vh; height: 100dvh; overflow: hidden; position: relative; background-color: var(--bg-marfil-alt); }
-       .horizontal-gallery-container { display: flex; height: 100%; width: 400vw; }
-       .gallery-slide { width: 100vw; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 2.5vw; position: relative; }
-       .gallery-photo { width: 100%; height: 85vh; object-fit: cover; filter: grayscale(15%) sepia(10%) contrast(110%); box-shadow: 0 20px 50px rgba(107, 76, 45, 0.1); border-radius: 4px; }
-
-       /* ============================================================================
-          CAPÍTULO IV: COORDENADAS (Espacio en Blanco + Pista Ampliada)
-          ============================================================================ */
-       #chapter-4 { position: relative; width: 100%; height: 500vh; margin-top: 25vh; }
-       @media (max-width: 768px) { #chapter-4 { height: 350vh; margin-top: 20vh; } }
+       #chapter-3 { position: relative; width: 100%; height: 500vh; margin-top: 25vh; }
+       @media (max-width: 768px) { #chapter-3 { height: 368vh; margin-top: 20vh; } }
        
        .sticky-container { position: -webkit-sticky; position: sticky; top: 0; width: 100%; height: 100vh; height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; padding: 0 1rem; }
        
-       /* Nota: La iglesia arrancará con opacity seteada por GSAP.set para que fluya hacia arriba */
-       .ethereal-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(70%) sepia(15%) contrast(115%) brightness(105%); opacity: 0; z-index: 0; }
+       .ethereal-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(50%) sepia(15%) contrast(115%) brightness(105%); opacity: 0; z-index: 0; }
        .vignette-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, rgba(244,240,234,0.85) 0%, rgba(244,240,234,0.4) 40%, rgba(244,240,234,0.1) 100%); z-index: 1; pointer-events: none; }
-       #chapter-4 .chapter-tag { font-size: clamp(0.55rem, 2vw, 0.65rem); letter-spacing: 0.45em; text-transform: uppercase; color: var(--bronce-mate); position: absolute; top: 15%; z-index: 10; }
+       #chapter-3 .chapter-tag { font-size: clamp(0.55rem, 2vw, 0.65rem); letter-spacing: 0.45em; text-transform: uppercase; color: var(--bronce-mate); position: absolute; top: 15%; z-index: 10; }
        
        .monumental-text-container { position: relative; z-index: 2; width: 100%; height: 100vh; height: 100dvh; display: flex; align-items: center; justify-content: center; pointer-events: none; }
        .info-layer { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; width: 100%; text-shadow: 0 0 40px rgba(244, 240, 234, 1), 0 0 15px rgba(244, 240, 234, 0.8); opacity: 0; }
@@ -144,7 +131,7 @@
        .map-btn { margin-top: 1.8rem; display: inline-block; background: transparent; border: none; padding: 0.8rem 1rem; font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--bronce-mate); text-decoration: none; transition: opacity 0.4s var(--ease-luxury); cursor: pointer; pointer-events: auto; }
        .map-btn:hover { opacity: 0.6; }
 
-       /* CAPÍTULO V: EL PROTOCOLO */
+       /* CAPÍTULO IV: EL PROTOCOLO */
        .protocol-section { position: relative; width: 100%; background-color: var(--bg-marfil); padding: 8rem 2rem 4rem 2rem; z-index: 2; display: flex; flex-direction: column; align-items: center; }
        .protocol-container { width: 100%; max-width: 600px; text-align: center; display: flex; flex-direction: column; gap: 6rem; }
        .protocol-block { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
@@ -154,12 +141,16 @@
        .rsvp-btn { margin-top: 1.5rem; display: inline-block; background: transparent; border: 1px solid rgba(142,99,59,0.4); padding: 1rem 3rem; font-size: 0.75rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--bronce-mate); text-decoration: none; transition: all 0.4s ease; cursor: pointer; }
        .rsvp-btn:hover { background-color: var(--bronce-mate); color: var(--bg-marfil); }
 
-       /* CAPÍTULO VI: MEMORIAS */
-       .memories-container { background-color: var(--bg-marfil-alt); width: 100%; position: relative; z-index: 2; padding: 0; display: flex; flex-direction: column; align-items: center; }
-       .gallery-intro-section { padding: clamp(4rem, 10vh, 6rem) 1.5rem 4rem 1.5rem; display: flex; flex-direction: column; align-items: center; width: 100%; }
-       .gallery-container { width: 100%; max-width: 600px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 1.2rem; }
-       .gallery-main-title { font-size: clamp(2.2rem, 6vw, 3.5rem); color: var(--bronce-mate); line-height: 1.2; margin-bottom: 0.5rem; }
-       .gallery-text { font-family: 'Montserrat', sans-serif; font-size: 0.9rem; line-height: 1.8; color: var(--carbon-suave); font-weight: 300; margin-bottom: 1rem; }
+       /* ============================================================================
+          CAPÍTULO VI: MEMORIAS (Galería Horizontal Interactiva Original)
+          ============================================================================ */
+       .journey-section { position: relative; width: 100%; background-color: var(--bg-marfil-alt); z-index: 2; overflow: hidden; }
+       .journey-chapter-tag { position: absolute; top: clamp(3rem, 8vh, 5rem); left: 50%; transform: translateX(-50%); z-index: 10; color: var(--bronce-mate); opacity: 0.9; text-transform: uppercase; letter-spacing: 0.45em; font-size: clamp(0.55rem, 2vw, 0.65rem); }
+       
+       .horizontal-gallery-wrapper { width: 100%; height: 100vh; height: 100dvh; overflow: hidden; position: relative; background-color: var(--bg-marfil-alt); }
+       .horizontal-gallery-container { display: flex; height: 100%; width: 400vw; }
+       .gallery-slide { width: 100vw; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 2.5vw; position: relative; }
+       .gallery-photo { width: 100%; height: 90vh; object-fit: cover; filter: grayscale(15%) sepia(10%) contrast(110%); box-shadow: 0 20px 50px rgba(107, 76, 45, 0.1); border-radius: 4px; }
 
        /* Video Section */
        .cinematic-video-container { position: relative; width: 100%; height: 100vh; height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; background-color: var(--bg-marfil-alt); }
@@ -180,7 +171,7 @@
 
        /* RAMO FINAL */
        .floral-closure-section { position: relative; width: 100%; height: clamp(400px, 65vh, 900px); overflow: hidden; background-color: var(--bg-marfil); z-index: 2; }
-       .floral-closure-photo { width: 100%; height: 130%; object-fit: cover; filter: grayscale(100%) sepia(20%) contrast(110%) brightness(115%); opacity: 0.65; display: block; transform: translateY(-15%); }
+       .floral-closure-photo { width: 100%; height: 130%; object-fit: cover; filter: grayscale(60%) sepia(15%) contrast(110%) brightness(115%); opacity: 0.65; display: block; transform: translateY(-15%); }
     </style>
     
     <script>document.documentElement.classList.remove('no-js');</script>
@@ -287,35 +278,15 @@
         </section>
 
         <!-- ==================================================================== -->
-        <!-- CAPÍTULO III: NUESTRO CAMINO (Header + Galería Horizontal)           -->
+        <!-- CAPÍTULO III: NUESTRO CAMINO (Ubicación / Coordenadas)               -->
         <!-- ==================================================================== -->
-        <section id="chapter-3" class="journey-section" aria-label="Nuestro Camino">
-            
-            <div class="journey-header">
-                <div class="chapter-tag font-meta">Capítulo III &bull; Nuestro Camino</div>
-                <h2 class="family-main-title font-display fade-gallery" style="margin-bottom:0;">Nuestra Historia</h2>
-            </div>
-            
-            <div class="horizontal-gallery-wrapper" id="horizontal-wrapper">
-                <div class="horizontal-gallery-container" id="horizontal-container">
-                    <div class="gallery-slide"><img src="foto1.jpeg" alt="Memoria 1" class="gallery-photo" /></div>
-                    <div class="gallery-slide"><img src="foto2.jpeg" alt="Memoria 2" class="gallery-photo" /></div>
-                    <div class="gallery-slide"><img src="foto3.jpeg" alt="Memoria 3" class="gallery-photo" /></div>
-                    <div class="gallery-slide"><img src="foto4.jpeg" alt="Memoria 4" class="gallery-photo" /></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ==================================================================== -->
-        <!-- CAPÍTULO IV: COORDENADAS (Scroll Físico Ampliado + Espacio de Respiro)-->
-        <!-- ==================================================================== -->
-        <section id="chapter-4">
+        <section id="chapter-3">
           <div class="sticky-container">
             <img src="iglesia.jpeg" alt="Iglesia" class="ethereal-bg" id="bg-iglesia" />
             <img src="jardin.jpeg" alt="Jardín" class="ethereal-bg" id="bg-jardin" />
             <div class="vignette-overlay"></div>
 
-            <div class="chapter-tag font-meta" id="ch-tag">Capítulo IV &bull; Ubicación</div>
+            <div class="chapter-tag font-meta" id="ch-tag">Capítulo III &bull; Ubicación</div>
 
             <div class="monumental-text-container">
               
@@ -343,11 +314,11 @@
         </section>
 
         <!-- ==================================================================== -->
-        <!-- CAPÍTULO V: EL PROTOCOLO (LOGÍSTICA Y RSVP)                          -->
+        <!-- CAPÍTULO IV: EL PROTOCOLO (LOGÍSTICA Y RSVP)                         -->
         <!-- ==================================================================== -->
-        <section id="chapter-5" class="protocol-section">
+        <section id="chapter-4" class="protocol-section">
             <div class="protocol-container">
-                <div class="chapter-tag font-meta" style="opacity: 1; transform: none; margin-bottom: 2rem;">Capítulo V &bull; Protocolo</div>
+                <div class="chapter-tag font-meta" style="opacity: 1; transform: none; margin-bottom: 2rem;">Capítulo IV &bull; Protocolo</div>
 
                 <div class="protocol-block" style="gap: 1rem;">
                     <h3 class="protocol-title font-display">Código de Vestimenta</h3>
@@ -373,20 +344,25 @@
         </section>
 
         <!-- ==================================================================== -->
-        <!-- CAPÍTULO VI: MEMORIAS (Fotos Invitados + Video 100vw)                -->
+        <!-- CAPÍTULO V: MEMORIAS (Galería Horizontal de Fotos)                   -->
         <!-- ==================================================================== -->
-        <section id="chapter-6" class="memories-container">
+        <section id="chapter-5" class="journey-section" aria-label="Nuestro Camino">
+            <div class="journey-chapter-tag font-meta">Capítulo V &bull; Memorias</div>
             
-            <div class="gallery-intro-section">
-                <div class="gallery-container">
-                    <div class="chapter-tag font-meta" style="opacity: 1; transform: none; margin-bottom: 2rem;">Capítulo VI &bull; Memorias</div>
-                    <h2 class="gallery-main-title font-display fade-gallery">Captura el Momento</h2>
-                    <p class="gallery-text fade-gallery">Ayúdanos a inmortalizar nuestra celebración.<br>Comparte tus fotografías en nuestro álbum compartido.</p>
-                    <a href="https://photos.app.goo.gl/vVC1wfmnhZBULLak8" target="_blank" class="map-btn font-meta fade-gallery" style="margin-bottom: 2rem;">Subir mis fotos</a>
+            <div class="horizontal-gallery-wrapper" id="horizontal-wrapper">
+                <div class="horizontal-gallery-container" id="horizontal-container">
+                    <div class="gallery-slide"><img src="foto1.jpg" alt="Memoria 1" class="gallery-photo" /></div>
+                    <div class="gallery-slide"><img src="foto2.jpg" alt="Memoria 2" class="gallery-photo" /></div>
+                    <div class="gallery-slide"><img src="foto3.jpg" alt="Memoria 3" class="gallery-photo" /></div>
+                    <div class="gallery-slide"><img src="foto4.jpg" alt="Memoria 4" class="gallery-photo" /></div>
                 </div>
             </div>
+        </section>
 
-            <!-- Video Sin Márgenes Horizontales -->
+        <!-- ==================================================================== -->
+        <!-- CAPÍTULO VI: VIDEO CINEMÁTICO SAVE THE DATE                          -->
+        <!-- ==================================================================== -->
+        <section id="chapter-6" class="memories-container">
             <div class="cinematic-video-container" id="video-container">
                 <video id="save-date-video" class="save-date-video" autoplay loop muted playsinline>
                     <source src="save_the_date.mp4" type="video/mp4" />
@@ -396,7 +372,6 @@
                     <button id="video-fullscreen-btn" class="video-play-btn">Ver Video</button>
                 </div>
             </div>
-
         </section>
 
         <!-- ==================================================================== -->

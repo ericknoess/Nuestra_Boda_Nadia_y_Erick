@@ -220,10 +220,29 @@ function initSPAAnimations() {
 
         // --- SECCIÓN 2B: FAMILIA ---
         gsap.utils.toArray(".fade-family").forEach((element) => {
-            gsap.from(element, { scrollTrigger: { trigger: element, start: "top 85%" }, y: 30, opacity: 0, duration: 1.2, ease: "power3.out" });
+            gsap.from(element, { scrollTrigger: { trigger: element, start: "top 85%" }, y: 30, opacity: 0, duration: 2.2, ease: "power3.out" });
         });
 
-        // --- CAPÍTULO III: NUESTRO CAMINO (Galería Horizontal) ---
+        // --- CAPÍTULO III: COORDENADAS (UBICACIÓN) ---
+        gsap.set("#bg-iglesia", { opacity: 0.38 }); 
+        
+        const ch3Tl = gsap.timeline({ scrollTrigger: { trigger: "#chapter-3", start: "top top", end: "bottom bottom", scrub: 1 } });
+        
+        ch3Tl
+            .to("#bg-iglesia", { scale: 1.08, duration: 10.0, ease: "none" }, 0)
+            .to("#layer-fecha", { opacity: 1, duration: 1.0 }, 2.0) 
+            .to("#layer-fecha", { opacity: 0, y: -40, duration: 1.2 }, 4.0) 
+            .to("#layer-ceremonia", { opacity: 1, y: 0, duration: 1.2 }, 4.8)
+            .to("#layer-ceremonia", { opacity: 0, y: -40, duration: 1.2 }, 7.5)
+            .to("#bg-iglesia", { opacity: 0, duration: 1.5 }, 7.5)
+            .to("#bg-jardin", { opacity: 0.38, duration: 1.5 }, 7.5)
+            .to("#bg-jardin", { scale: 1.08, duration: 5.0, ease: "none" }, 7.5)
+            .to("#layer-recepcion", { opacity: 1, y: 0, duration: 1.2 }, 8.5)
+            .to("#layer-recepcion", { opacity: 0, y: -40, duration: 1.2 }, 12.0)
+            .to("#bg-jardin", { opacity: 0, duration: 1.2 }, 12.0)
+            .to("#ch-tag", { opacity: 0, duration: 1.2 }, 12.0);
+
+        // --- CAPÍTULO V: GALERÍA HORIZONTAL ---
         const horizontalWrapper = document.getElementById("horizontal-wrapper");
         const horizontalContainer = document.getElementById("horizontal-container");
         
@@ -242,39 +261,8 @@ function initSPAAnimations() {
                 }
             });
         }
-
-        // --- CAPÍTULO IV: COORDENADAS (COREOGRAFÍA PINEADA CON PAUSA) ---
-        
-        // 1. Establecemos la iglesia visible desde el inicio para que suba naturalmente con el scroll
-        gsap.set("#bg-iglesia", { opacity: 0.38 }); 
-        
-        // 2. Timeline Maestra
-        const ch4Tl = gsap.timeline({ scrollTrigger: { trigger: "#chapter-4", start: "top top", end: "bottom bottom", scrub: 1 } });
-        
-        ch4Tl
-            // Inicia el movimiento sutil de parallax en el instante en que se fija (pin)
-            .to("#bg-iglesia", { scale: 1.08, duration: 10.0, ease: "none" }, 0)
             
-            // EL ESPACIO DE RESPIRO: Retrasamos la entrada de la fecha hasta el segundo 2.0
-            .to("#layer-fecha", { opacity: 1, duration: 1.0 }, 2.0) 
-            
-            // Transición cruzada: Fecha sale -> Detalles Ceremonia entran
-            .to("#layer-fecha", { opacity: 0, y: -40, duration: 1.2 }, 4.0) 
-            .to("#layer-ceremonia", { opacity: 1, y: 0, duration: 1.2 }, 4.8)
-            
-            // Transición cruzada: Ceremonia/Iglesia sale -> Recepción/Jardín entran
-            .to("#layer-ceremonia", { opacity: 0, y: -40, duration: 1.2 }, 7.5)
-            .to("#bg-iglesia", { opacity: 0, duration: 1.5 }, 7.5)
-            .to("#bg-jardin", { opacity: 0.38, duration: 1.5 }, 7.5)
-            .to("#bg-jardin", { scale: 1.08, duration: 5.0, ease: "none" }, 7.5)
-            .to("#layer-recepcion", { opacity: 1, y: 0, duration: 1.2 }, 8.5)
-            
-            // Salida final de la sección
-            .to("#layer-recepcion", { opacity: 0, y: -40, duration: 1.2 }, 12.0)
-            .to("#bg-jardin", { opacity: 0, duration: 1.2 }, 12.0)
-            .to("#ch-tag", { opacity: 0, duration: 1.2 }, 12.0);
-            
-        // --- CH5 & CH6: MEMORIAS (Textos Fade) ---
+        // --- CH6 & CH7: MEMORIAS Y EPÍLOGO (Textos Fade) ---
         gsap.utils.toArray(".fade-gallery").forEach((element) => {
             gsap.from(element, { scrollTrigger: { trigger: element, start: "top 85%" }, y: 30, opacity: 0, duration: 1.2, ease: "power3.out" });
         });
