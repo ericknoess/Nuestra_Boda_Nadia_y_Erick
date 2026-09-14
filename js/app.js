@@ -220,49 +220,99 @@ function initSPAAnimations() {
 
         // --- SECCIÓN 2B: FAMILIA ---
         gsap.utils.toArray(".fade-family").forEach((element) => {
-            gsap.from(element, { scrollTrigger: { trigger: element, start: "top 85%" }, y: 30, opacity: 0, duration: 2.2, ease: "power3.out" });
+            gsap.from(element, { scrollTrigger: { trigger: element, start: "top 85%" }, y: 30, opacity: 0, duration: 1.2, ease: "power3.out" });
         });
 
-        // --- CAPÍTULO III: COORDENADAS (UBICACIÓN) ---
-        gsap.set("#bg-iglesia", { opacity: 0.38 }); 
-        
-        const ch3Tl = gsap.timeline({ scrollTrigger: { trigger: "#chapter-3", start: "top top", end: "bottom bottom", scrub: 1 } });
-        
-        ch3Tl
-            .to("#bg-iglesia", { scale: 1.08, duration: 10.0, ease: "none" }, 0)
-            .to("#layer-fecha", { opacity: 1, duration: 1.0 }, 2.0) 
-            .to("#layer-fecha", { opacity: 0, y: -40, duration: 1.2 }, 4.0) 
-            .to("#layer-ceremonia", { opacity: 1, y: 0, duration: 1.2 }, 4.8)
-            .to("#layer-ceremonia", { opacity: 0, y: -40, duration: 1.2 }, 7.5)
-            .to("#bg-iglesia", { opacity: 0, duration: 1.5 }, 7.5)
-            .to("#bg-jardin", { opacity: 0.38, duration: 1.5 }, 7.5)
-            .to("#bg-jardin", { scale: 1.08, duration: 5.0, ease: "none" }, 7.5)
-            .to("#layer-recepcion", { opacity: 1, y: 0, duration: 1.2 }, 8.5)
-            .to("#layer-recepcion", { opacity: 0, y: -40, duration: 1.2 }, 12.0)
-            .to("#bg-jardin", { opacity: 0, duration: 1.2 }, 12.0)
-            .to("#ch-tag", { opacity: 0, duration: 1.2 }, 12.0);
-
-        // --- CAPÍTULO V: GALERÍA HORIZONTAL ---
+        // --- CAPÍTULO III: NUESTRO CAMINO (Galería Horizontal) ---
         const horizontalWrapper = document.getElementById("horizontal-wrapper");
         const horizontalContainer = document.getElementById("horizontal-container");
         
         if (horizontalWrapper && horizontalContainer) {
             let getScrollAmount = () => -(horizontalContainer.scrollWidth - window.innerWidth);
-            gsap.to(horizontalContainer, {
-                x: getScrollAmount,
-                ease: "none",
+
+            // Un único ScrollTrigger controla TODA la escena (desplazamiento + salida),
+            // evitando triggers duplicados y garantizando que la salida esté
+            // perfectamente sincronizada con el mismo progreso de scroll.
+            const ch3Tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: horizontalWrapper,
                     start: "top top",
                     end: () => `+=${horizontalContainer.scrollWidth - window.innerWidth}`,
                     pin: true,
                     scrub: 1,
-                    invalidateOnRefresh: true 
+                    invalidateOnRefresh: true
                 }
             });
+
+            ch3Tl
+                // 0% → 82%: recorrido horizontal normal de las 4 fotos
+                .to(horizontalContainer, { x: getScrollAmount, ease: "none", duration: 0.82 }, 0)
+                // 82% → 100%: la galería se disuelve ANTES de despinear,
+                // así el despineo ocurre ya con la escena invisible (sin "corte")
+                .to(horizontalWrapper, { opacity: 0, ease: "power2.in", duration: 0.18 }, 0.82);
         }
+
+        // --- CAPÍTULO IV: COORDENADAS (COREOGRAFÍA PINEADA CON PAUSA) ---
+
+        // 1. Estado inicial determinista: la iglesia arranca invisible.
+        gsap.set("#bg-iglesia", { opacity: 0, scale: 1 });
+
+        // 1.1 FUNDIDO DE ENTRADA — llena el espacio de respiro (margin-top) que antes
+        // quedaba en blanco entre el fin de la galería y el inicio de Cap.IV.
+        //
+        // start: "top 130%" -> empieza a fundir ANTES de que la imagen sea visible
+        //   (todavía está por debajo del viewport, así que el arranque del fundido
+        //   nunca se nota).
+        // end: "top -40%"   -> termina DESPUÉS de que .sticky-container ya quedó
+        //   pegado arriba (eso ocurre en "top top"). Antes el fundido terminaba
+        //   justo EN "top top", coincidiendo con el instante exacto en que el
+        //   navegador cambia el comportamiento de posicionamiento (de flujo normal
+        //   a sticky) — esa coincidencia es lo que se leía como "aparece de golpe".
+        //   Ahora ese cambio ocurre a la mitad del fundido, no en su borde.
+        gsap.fromTo("#bg-iglesia",
+            { opacity: 0 },
+            {
+                opacity: 0.38,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "#chapter-4",
+                    start: "top 130%",
+                    end: "top -40%",
+                    scrub: true
+                }
+            }
+        );
+
+        // 2. Timeline Maestra
+        const ch4Tl = gsap.timeline({ scrollTrigger: { trigger: "#chapter-4", start: "top top", end: "bottom bottom", scrub: 1 } });
+        
+        ch4Tl
+            // Entrada del rótulo del capítulo (antes nunca se animaba: permanecía invisible)
+            .to("#ch-tag", { opacity: 0.85, y: 0, duration: 1.0, ease: "power2.out" }, 0)
+
+            // Inicia el movimiento sutil de parallax en el instante en que se fija (pin)
+            .to("#bg-iglesia", { scale: 1.08, duration: 10.0, ease: "none" }, 0)
             
-        // --- CH6 & CH7: MEMORIAS Y EPÍLOGO (Textos Fade) ---
+            // EL ESPACIO DE RESPIRO: Retrasamos la entrada de la fecha hasta el segundo 2.0
+            .to("#layer-fecha", { opacity: 1, duration: 1.0 }, 2.0) 
+            
+            // Transición cruzada: Fecha sale -> Detalles Ceremonia entran
+            .to("#layer-fecha", { opacity: 0, y: -40, duration: 1.2 }, 4.0) 
+            .to("#layer-ceremonia", { opacity: 1, y: 0, duration: 1.2 }, 4.8)
+            
+            // Transición cruzada: Ceremonia/Iglesia sale -> Recepción/Jardín entran
+            .to("#layer-ceremonia", { opacity: 0, y: -40, duration: 1.2 }, 7.5)
+            .to("#bg-iglesia", { opacity: 0, duration: 1.5 }, 7.5)
+            .to("#bg-jardin", { opacity: 0.38, duration: 1.5 }, 7.5)
+            .to("#bg-jardin", { scale: 1.08, duration: 5.0, ease: "none" }, 7.5)
+            .to("#layer-recepcion", { opacity: 1, y: 0, duration: 1.2 }, 8.5)
+            
+            // Salida final de la sección
+            .to("#layer-recepcion", { opacity: 0, y: -40, duration: 1.2 }, 12.0)
+            .to("#bg-jardin", { opacity: 0, duration: 1.2 }, 12.0)
+            .to("#ch-tag", { opacity: 0, duration: 1.2 }, 12.0);
+            
+        // --- CH5 & CH6: MEMORIAS (Textos Fade) ---
         gsap.utils.toArray(".fade-gallery").forEach((element) => {
             gsap.from(element, { scrollTrigger: { trigger: element, start: "top 85%" }, y: 30, opacity: 0, duration: 1.2, ease: "power3.out" });
         });
